@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import {
-  Platform,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 
 import './config/ReactotronConfig';
 import './config/DevToolsConfig';
 
 export default class App extends Component {
-  componentDidMount(){
+  componentDidMount() {
     console.tron.log('Testando...');
   }
 
@@ -18,7 +17,7 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Bem-Vindo ao React Native! Desafio 02
+          Bem-Vindo ao React Native!
         </Text>
         <Text style={styles.instructions}>
           To get started, edit App.js
@@ -46,5 +45,4 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
-
 
