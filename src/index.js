@@ -5,8 +5,8 @@ import {
   View,
 } from 'react-native';
 
-import './config/ReactotronConfig';
-import './config/DevToolsConfig';
+import 'config/ReactotronConfig';
+import 'config/DevToolsConfig';
 
 export default class App extends Component {
   componentDidMount() {
