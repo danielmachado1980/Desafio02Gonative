@@ -1,10 +1,10 @@
 import { StackNavigator } from 'react-navigation';
 
-import Lista from 'pages/lista';
+import Repositories from 'pages/repositories';
 import Issues from 'pages/issues';
 
 const Routes = StackNavigator({
-  Home: { screen: Lista },
+  Home: { screen: Repositories },
   Issues: { screen: Issues },
 }, {
   initialRouteName: 'Home',

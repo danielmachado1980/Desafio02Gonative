@@ -2,6 +2,6 @@ import React from 'react';
 
 import { View } from 'react-native';
 
-const Lista = () => <View />;
+const Repositories = () => <View />;
 
-export default Lista;
+export default Repositories;
