@@ -7,6 +7,7 @@ export default class Header extends Component {
   state = {
     name: '',
   }
+
   render() {
     return (
       <View style={styles.container}>
@@ -21,7 +22,7 @@ export default class Header extends Component {
           />
         </View>
         <View style={styles.rightHeader}>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={() => this.props.addRepository(this.state.name)}>
             <Icon style={styles.button} name="plus" />
           </TouchableOpacity>
         </View>

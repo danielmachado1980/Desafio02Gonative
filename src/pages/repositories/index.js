@@ -6,7 +6,7 @@ import Header from 'components/header';
 
 import styles from './styles';
 
-export default class Repositorys extends Component {
+export default class Repositories extends Component {
   static navigationOptions = {
     headerStyle: { backgroundColor: colors.white },
     header: () => (
