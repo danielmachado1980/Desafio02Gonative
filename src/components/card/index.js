@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Image, View, Text } from 'react-native';
+import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
-import PropTypes from 'prop-types';
 
 export default class Card extends Component {
   static propTypes = {
@@ -12,19 +12,21 @@ export default class Card extends Component {
     }).isRequired,
   }
 
-  goToScreenIssue= (data) => {
+  goToIssue= (data) => {
     this.props.navigation.navigate('Issues', { title: data.name, repository: data.fullName });
   }
 
   render() {
     return (
-      <TouchableOpacity style={styles.container} onPress={() => this.goToScreenIssue(this.props.repository)}>
+      <TouchableOpacity
+        onPress={() => this.goToIssue(this.props.repository)}
+      >
         <Image style={styles.avatar} source={{ url: this.props.repository.avatarUrl }} />
         <View style={styles.containerText}>
           <Text style={styles.title}>{this.props.repository.fullName}</Text>
           <Text style={styles.description}>{this.props.repository.organization}</Text>
         </View>
-        <Icon name="chevron-right" style={styles.iconRight}/>
+        <Icon name="chevron-right" style={styles.iconRight} />
       </TouchableOpacity>
     );
   }

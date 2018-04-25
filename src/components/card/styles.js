@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   iconRight: {
-    fontSize: fonts.regular,
+    //fontSize: fonts.regular,
     color: colors.lowLight,
   },
   containerText: {
@@ -30,11 +30,11 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   description: {
-    fontSize: fonts.small,
+    //fontSize: fonts.small,
     color: colors.description,
   },
   title: {
-    fontSize: fonts.regular,
+    //fontSize: fonts.regular,
     fontWeight: 'bold',
     color: colors.darker,
     marginBottom: 5,
