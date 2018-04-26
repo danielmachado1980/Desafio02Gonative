@@ -9,7 +9,7 @@ export default class Repositories extends Component {
   static navigationOptions = {
     headerStyle: { backgroundColor: colors.white },
     header: () => (
-      <Header />
+      <Header addRepository={this.teste.bind(this)} />
     ),
   }
 
@@ -18,6 +18,13 @@ export default class Repositories extends Component {
     loading: false,
     refreshing: false,
     error: false,
+    tst: 'Nenhum repositório',
+  }
+
+  teste(input) {
+    this.setState({
+      tst: input,
+    });
   }
 
   loadRepositories = async () => {
@@ -38,7 +45,7 @@ export default class Repositories extends Component {
 
   renderError = () => (
     <View style={styles.containerEmpty}>
-      <Text style={styles.textEmpty}>Nenhum repositório</Text>
+      <Text style={styles.textEmpty}>{this.state.tst}</Text>
     </View>
   )
 
