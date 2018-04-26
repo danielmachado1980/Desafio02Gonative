@@ -14,7 +14,7 @@ export default class Header extends Component {
         <View style={styles.headerTitle}>
           <TextInput
             style={styles.input}
-            placeholder="Adicionar Repositório"
+            placeholder="Adicionar repositório"
             autoCapitalize="none"
             autoCorrect={false}
             onChangeText={name => this.setState({ name })}
