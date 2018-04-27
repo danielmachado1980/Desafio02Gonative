@@ -8,10 +8,8 @@ export default class Header extends Component {
     name: '',
   }
 
-  handleLangChange = () => {
+  handleNameChanged = () => {
     this.props.addRepository(this.state.name);
-    console.tron.log(this.props);
-    console.tron.log('Testando debug... Reactotron de novo!');
   }
 
   render() {
@@ -28,7 +26,7 @@ export default class Header extends Component {
           />
         </View>
         <View style={styles.rightHeader}>
-          <TouchableOpacity onPress={this.handleLangChange}>
+          <TouchableOpacity onPress={this.handleNameChanged}>
             <Icon style={styles.button} name="plus" />
           </TouchableOpacity>
         </View>

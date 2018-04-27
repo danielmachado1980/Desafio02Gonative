@@ -6,12 +6,13 @@ import Card from 'components/card';
 import styles from './styles';
 
 export default class Repositories extends Component {
-  static navigationOptions = {
-    headerStyle: { backgroundColor: colors.white },
-    header: () => (
-      <Header addRepository={this.teste.bind(this)} />
-    ),
-  }
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state;
+    return {
+      headerStyle: { backgroundColor: colors.white },
+      header: <Header addRepository={params.addRepository} />,
+    };
+  };
 
   state = {
     repositories: [],
@@ -21,11 +22,15 @@ export default class Repositories extends Component {
     tst: 'Nenhum repositório',
   }
 
-  teste(input) {
+  componentDidMount() {
+    this.props.navigation.setParams({ addRepository: this.addRepository });
+  }
+
+  addRepository = (input) => {
     this.setState({
       tst: input,
     });
-  }
+  };
 
   loadRepositories = async () => {
     const repositories = await AsyncStorage.getItem('@Desafio02Go:repositories')
