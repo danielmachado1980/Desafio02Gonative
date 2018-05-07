@@ -7,7 +7,7 @@ import styles from './styles';
 export default class Card extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
-      nativate: PropTypes.func,
+      navigate: PropTypes.func,
       setParams: PropTypes.func,
     }).isRequired,
   }

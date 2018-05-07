@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import PropTypes from 'prop-types';
 import styles from './styles';
 
 export default class Header extends Component {
