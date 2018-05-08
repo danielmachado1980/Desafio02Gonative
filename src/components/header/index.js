@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 
 export default class Header extends Component {
+  static propTypes = {
+    addRepository: PropTypes.shape().isRequired,
+  }
+
   state = {
     name: '',
   }
