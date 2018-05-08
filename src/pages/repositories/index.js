@@ -4,9 +4,8 @@ import { colors } from 'styles';
 import PropTypes from 'prop-types';
 import Header from 'components/header';
 import Card from 'components/card';
-import styles from './styles';
-
 import api from 'services/api';
+import styles from './styles';
 
 export default class Repositories extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -47,16 +46,20 @@ export default class Repositories extends Component {
 
   findRepoAndSave = async (repoName) => {
     const response = await api.get(`/repos/${repoName}`);
-    if (!response.ok) {
+
+    console.tron.log(response.status);
+
+    if (!response.status === 200) {
       this.setState({ loading: false });
-      Alert.alert('Ops!', 'Não foi encontrado!');
+      Alert.alert('Githuber', 'Repo não encontrado.');
       return;
     }
     if (this.state.repositories.find(e => e.id === response.data.id)) {
-      Alert.alert('Ei!', 'Esse Repositório já foi adicionado.');
+      Alert.alert('Githuber', 'Repo já adicionado.');
       this.setState({ loading: false });
       return;
     }
+
     const {
       id,
       name,
@@ -73,7 +76,10 @@ export default class Repositories extends Component {
       avatarUrl,
     };
 
-    await AsyncStorage.setItem('@Desafio02:repositories', JSON.stringify([newRepo, ...this.state.repositories]));
+    console.tron.log(newRepo);
+    console.tron.log(this.state.repositories.length);
+
+    await AsyncStorage.setItem('@Desafio02Go:repositories', JSON.stringify([this.state.repositories, ...newRepo]));
     this.loadRepositories();
     this.setState({ loading: false });
   }

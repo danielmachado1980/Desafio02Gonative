@@ -10,6 +10,11 @@ export default class Card extends Component {
       navigate: PropTypes.func,
       setParams: PropTypes.func,
     }).isRequired,
+    repository: PropTypes.shape({
+      avatarUrl: PropTypes.string,
+      fullName: PropTypes.string,
+      organization: PropTypes.string,
+    }).isRequired,
   }
 
   goToIssue= (data) => {
@@ -23,7 +28,7 @@ export default class Card extends Component {
       >
         <Image style={styles.avatar} source={{ url: this.props.repository.avatarUrl }} />
         <View style={styles.containerText}>
-          <Text style={styles.title}>{this.props.repository.fullName}</Text>
+          <Text style={styles.title}>Este é o FullName!</Text>
           <Text style={styles.description}>{this.props.repository.organization}</Text>
         </View>
         <Icon name="chevron-right" style={styles.iconRight} />
