@@ -77,7 +77,8 @@ export default class Repositories extends Component {
       avatarUrl,
     };
 
-    console.tron.log(newRepo);
+
+    console.tron.log(newRepo.avatarUrl);
     console.tron.log(this.state.repositories.length);
 
     await AsyncStorage.setItem('@Desafio02Go:repositories', JSON.stringify([...this.state.repositories, newRepo]));
@@ -118,7 +119,7 @@ export default class Repositories extends Component {
       data={this.state.repositories}
       keyExtractor={item => String(item.id)}
       showsVerticalScrollIndicator={false}
-      renderItem={({ item }) => <Card repository={item} />}
+      renderItem={({ item }) => <Card repository={item} navigation={this.props.navigation} />}
     />
   )
 

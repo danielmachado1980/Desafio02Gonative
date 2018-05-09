@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   avatar: {
-    height: 60,
-    width: 60,
+    height: 45,
+    width: 45,
     borderRadius: 30,
   },
   iconRight: {

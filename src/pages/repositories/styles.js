@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   textEmpty: {
     fontSize: 12,
     color: colors.dark,
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
   },
 });
 

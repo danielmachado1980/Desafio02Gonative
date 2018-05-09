@@ -18,20 +18,21 @@ export default class Card extends Component {
   }
 
   goToIssue= (data) => {
-    this.props.navigation.navigate('Issues', { title: data.name, repository: data.fullName });
+    this.props.navigation.navigate('Issues', { title: data.name, subtitle: data.fullName });
   }
 
   render() {
+    console.tron.log(this.props.repository.avatarUrl);
     return (
       <TouchableOpacity
         onPress={() => this.goToIssue(this.props.repository)}
       >
-        <Image style={styles.avatar} source={{ url: this.props.repository.avatarUrl }} />
         <View style={styles.containerText}>
+          <Image style={styles.avatar} source={{ uri: this.props.repository.avatarUrl }} />
           <Text style={styles.title}>{this.props.repository.fullName}</Text>
           <Text style={styles.description}>{this.props.repository.organization}</Text>
+          <Icon name="chevron-right" />
         </View>
-        <Icon name="chevron-right" style={styles.iconRight} />
       </TouchableOpacity>
     );
   }

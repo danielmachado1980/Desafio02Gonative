@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height: 40,
     fontSize: 12,
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
     paddingHorizontal: 10,
     color: colors.darker,
   },
