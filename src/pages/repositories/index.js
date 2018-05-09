@@ -46,7 +46,6 @@ export default class Repositories extends Component {
 
   findRepoAndSave = async (repoName) => {
     const response = await api.get(`/repos/${repoName}`);
-
     console.tron.log(response.status);
 
     if (!response.status === 200) {
@@ -54,11 +53,13 @@ export default class Repositories extends Component {
       Alert.alert('Githuber', 'Repo não encontrado.');
       return;
     }
-    if (this.state.repositories.find(e => e.id === response.data.id)) {
-      Alert.alert('Githuber', 'Repo já adicionado.');
-      this.setState({ loading: false });
-      return;
-    }
+
+    /* if (this.state.repositories.find(e => e.id === response.data.id)) {
+    //  Alert.alert('Githuber', 'Repo já adicionado.');
+    //  this.setState({ loading: false });
+    //  return;
+    //}
+    */
 
     const {
       id,
@@ -79,7 +80,7 @@ export default class Repositories extends Component {
     console.tron.log(newRepo);
     console.tron.log(this.state.repositories.length);
 
-    await AsyncStorage.setItem('@Desafio02Go:repositories', JSON.stringify([this.state.repositories, ...newRepo]));
+    await AsyncStorage.setItem('@Desafio02Go:repositories', JSON.stringify([...this.state.repositories, newRepo]));
     this.loadRepositories();
     this.setState({ loading: false });
   }
@@ -115,7 +116,7 @@ export default class Repositories extends Component {
         />
       }
       data={this.state.repositories}
-      keyExtractor={repositories => repositories.id}
+      keyExtractor={item => String(item.id)}
       showsVerticalScrollIndicator={false}
       renderItem={({ item }) => <Card repository={item} />}
     />
