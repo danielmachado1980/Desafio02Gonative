@@ -18,7 +18,7 @@ export default class Issues extends Component {
     navigation: PropTypes.shape({
       state: PropTypes.shape({
         params: PropTypes.shape({
-          repository: PropTypes.string,
+          subtitle: PropTypes.string,
         }).isRequired,
       }).isRequired,
       goBack: PropTypes.shape().isRequired,
@@ -34,7 +34,7 @@ export default class Issues extends Component {
   }
 
   componentWillMount() {
-    this.setState({ repositoryName: this.props.navigation.state.params.repository });
+    this.setState({ repositoryName: this.props.navigation.state.params.subtitle });
   }
 
   componentDidMount() {
@@ -49,11 +49,9 @@ export default class Issues extends Component {
   findIssues = async (repository, status) => {
     this.setState({ loading: true });
     const response = await api.get(`repos/${repository}/issues?state=${status}`);
-    if (!response.ok) {
-      this.setState({ loading: false });
-      Alert.alert('Ops!', 'Algo deu errado.');
-      return;
-    }
+
+    console.tron.log(response);
+
     this.setState({ issues: response.data, loading: false });
   }
 
@@ -69,9 +67,27 @@ export default class Issues extends Component {
       this.findIssues(this.state.repositoryName, this.state.status);
     } catch (error) {
       this.setState({ error: true, loading: false });
-      // alert('Não foi possível completar o carregamento.');
+      Alert.alert('Ops!', 'Algo deu errado.');
     }
   }
+
+  renderItem = ({ item }) => {
+    const {
+      id,
+      title: fullName,
+      user: { login: organization, avatar_url: avatarUrl },
+    } = item;
+
+    const issue = {
+      id,
+      fullName,
+      organization,
+      avatarUrl,
+    };
+    console.tron.log(issue);
+
+    return <Card repository={issue} />;
+  };
 
   renderIssues = () => (
     <FlatList
@@ -85,7 +101,7 @@ export default class Issues extends Component {
       showsVerticalScrollIndicator={false}
       data={this.state.issues}
       keyExtractor={issues => issues.id}
-      renderItem={({ item }) => <Card issue={item} />}
+      renderItem={this.renderItem}
     />
   );
 
