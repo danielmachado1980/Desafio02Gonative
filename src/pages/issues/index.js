@@ -21,7 +21,6 @@ export default class Issues extends Component {
           subtitle: PropTypes.string,
         }).isRequired,
       }).isRequired,
-      goBack: PropTypes.shape().isRequired,
     }).isRequired,
   };
 
@@ -84,7 +83,7 @@ export default class Issues extends Component {
       organization,
       avatarUrl,
     };
-    console.tron.log(issue);
+    //console.tron.log(issue);
 
     return <Card repository={issue} />;
   };

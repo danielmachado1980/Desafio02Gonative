@@ -10,6 +10,7 @@ import styles from './styles';
 export default class Repositories extends Component {
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
+    console.tron.log(`Verificando... ${params.addRepository}`);
     return {
       headerStyle: { backgroundColor: colors.white },
       header: <Header addRepository={params.addRepository} />,
@@ -33,6 +34,7 @@ export default class Repositories extends Component {
 
   componentWillMount() {
     this.props.navigation.setParams({ addRepository: this.addRepository });
+    console.tron.log('Verificando willMount...');
   }
 
   addRepository = (name) => {
@@ -46,7 +48,7 @@ export default class Repositories extends Component {
 
   findRepoAndSave = async (repoName) => {
     const response = await api.get(`/repos/${repoName}`);
-    console.tron.log(response.status);
+    //console.tron.log(response.status);
 
     if (!response.status === 200) {
       this.setState({ loading: false });
@@ -77,9 +79,8 @@ export default class Repositories extends Component {
       avatarUrl,
     };
 
-
-    console.tron.log(newRepo.avatarUrl);
-    console.tron.log(this.state.repositories.length);
+    //console.tron.log(newRepo.avatarUrl);
+    //console.tron.log(this.state.repositories.length);
 
     await AsyncStorage.setItem('@Desafio02Go:repositories', JSON.stringify([...this.state.repositories, newRepo]));
     this.loadRepositories();

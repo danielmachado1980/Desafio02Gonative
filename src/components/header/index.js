@@ -6,7 +6,11 @@ import styles from './styles';
 
 export default class Header extends Component {
   static propTypes = {
-    addRepository: PropTypes.shape().isRequired,
+    addRepository: PropTypes.func,
+  }
+
+  static defaultProps = {
+    addRepository: () => {},
   }
 
   state = {
@@ -31,7 +35,7 @@ export default class Header extends Component {
           />
         </View>
         <View style={styles.rightHeader}>
-          <TouchableOpacity onPress={this.handleNameChanged}>
+          <TouchableOpacity onPress={() => this.handleNameChanged()}>
             <Icon style={styles.button} name="plus" />
           </TouchableOpacity>
         </View>

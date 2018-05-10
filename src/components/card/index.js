@@ -9,7 +9,7 @@ export default class Card extends Component {
     navigation: PropTypes.shape({
       navigate: PropTypes.func,
       setParams: PropTypes.func,
-    }).isRequired,
+    }),
     repository: PropTypes.shape({
       avatarUrl: PropTypes.string,
       fullName: PropTypes.string,
@@ -17,17 +17,21 @@ export default class Card extends Component {
     }).isRequired,
   }
 
+  static defaultProps = {
+    navigation: () => {},
+  }
+
   goToIssue= (data) => {
     this.props.navigation.navigate('Issues', { title: data.name, subtitle: data.fullName });
   }
 
   render() {
-    console.tron.log(this.props.repository.avatarUrl);
+    //console.tron.log(this.props.repository.avatarUrl);
     return (
       <TouchableOpacity
         onPress={() => this.goToIssue(this.props.repository)}
       >
-        <View style={styles.containerText}>
+        <View style={styles.container}>
           <Image style={styles.avatar} source={{ uri: this.props.repository.avatarUrl }} />
           <Text style={styles.title}>{this.props.repository.fullName}</Text>
           <Text style={styles.description}>{this.props.repository.organization}</Text>

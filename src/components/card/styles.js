@@ -1,19 +1,13 @@
 import { StyleSheet } from 'react-native';
-import { colors, fonts } from 'styles';
+import { metrics, colors } from 'styles';
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 10,
-    marginVertical: 4,
-    height: 80,
-    borderRadius: 5,
     backgroundColor: colors.white,
-    alignItems: 'center',
-    shadowColor: colors.darker,
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
+    borderRadius: metrics.baseRadius,
+    padding: metrics.basePadding,
+    marginHorizontal: metrics.basePadding,
+    marginTop: metrics.baseMargin,
   },
   avatar: {
     height: 45,
@@ -21,7 +15,6 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   iconRight: {
-    //fontSize: fonts.regular,
     color: colors.lowLight,
   },
   containerText: {
@@ -30,11 +23,9 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   description: {
-    //fontSize: fonts.small,
     color: colors.description,
   },
   title: {
-    //fontSize: fonts.regular,
     fontWeight: 'bold',
     color: colors.darker,
     marginBottom: 5,
