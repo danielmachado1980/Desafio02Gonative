@@ -3,6 +3,10 @@ import { metrics, colors } from 'styles';
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'space-between',
     backgroundColor: colors.white,
     borderRadius: metrics.baseRadius,
     padding: metrics.basePadding,

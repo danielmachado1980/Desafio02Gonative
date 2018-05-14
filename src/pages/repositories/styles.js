@@ -5,8 +5,8 @@ import { colors } from 'styles';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 15,
-    paddingTop: 10,
+    //paddingHorizontal: 15,
+    //paddingTop: 10,
   },
   containerEmpty: {
     flex: 1,

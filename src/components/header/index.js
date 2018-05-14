@@ -28,6 +28,7 @@ export default class Header extends Component {
           <TextInput
             style={styles.input}
             placeholder="Adicionar repositório"
+            underlineColorAndroid="gray"
             autoCapitalize="none"
             autoCorrect={false}
             onChangeText={name => this.setState({ name })}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, ActivityIndicator, AsyncStorage, FlatList, View, RefreshControl } from 'react-native';
+import { Alert, ActivityIndicator, AsyncStorage, FlatList, View, RefreshControl, YellowBox } from 'react-native';
 import PropTypes from 'prop-types';
 import api from 'services/api';
 import { colors } from 'styles';
@@ -7,6 +7,8 @@ import Header from 'components/header';
 import Card from 'components/card';
 import Menu from 'components/menu';
 import styles from './styles';
+
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 export default class Issues extends Component {
   static navigationOptions = ({ navigation }) => ({
