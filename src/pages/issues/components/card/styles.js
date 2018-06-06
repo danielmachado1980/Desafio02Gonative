@@ -11,28 +11,29 @@ const styles = StyleSheet.create({
     borderRadius: metrics.baseRadius,
     padding: metrics.basePadding,
     marginHorizontal: metrics.basePadding,
-    marginTop: metrics.baseMargin,
+    marginTop: metrics.basePadding,
   },
   avatar: {
     height: 45,
     width: 45,
     borderRadius: 30,
   },
-  iconRight: {
-    color: colors.lowLight,
-  },
-  containerText: {
+  infoContent: {
     flex: 1,
-    alignContent: 'flex-start',
-    paddingLeft: 10,
+    paddingHorizontal: metrics.basePadding,
+  },
+  iconRight: {
+    //color: colors.lowLight,
+    fontSize: 20,
   },
   description: {
-    color: colors.description,
+    color: colors.medium,
+    fontSize: 12,
   },
   title: {
-    fontWeight: 'bold',
+    fontSize: 16,
     color: colors.darker,
-    marginBottom: 5,
+    //marginBottom: 5,
   },
 });
 

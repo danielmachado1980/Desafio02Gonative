@@ -3,14 +3,14 @@ import { Alert, View, AsyncStorage, ActivityIndicator, Text, FlatList, RefreshCo
 import { colors } from 'styles';
 import PropTypes from 'prop-types';
 import Header from 'components/header';
-import Card from 'components/card';
 import api from 'services/api';
+import Repo from './components/repository';
 import styles from './styles';
 
 export default class Repositories extends Component {
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
-    console.tron.log(`Verificando... ${params.addRepository}`);
+    // console.tron.log(`Verificando... ${params.addRepository}`);
     return {
       headerStyle: { backgroundColor: colors.white },
       header: <Header addRepository={params.addRepository} />,
@@ -29,12 +29,12 @@ export default class Repositories extends Component {
     loading: false,
     refreshing: false,
     error: false,
-    tst: 'Nenhum repositório',
+    none: 'Nenhum repositório',
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    this.loadRepositories();
     this.props.navigation.setParams({ addRepository: this.addRepository });
-    console.tron.log('Verificando willMount...');
   }
 
   addRepository = (name) => {
@@ -47,44 +47,55 @@ export default class Repositories extends Component {
   };
 
   findRepoAndSave = async (repoName) => {
-    const response = await api.get(`/repos/${repoName}`);
-    //console.tron.log(response.status);
+    try {
+      const response = await this.checkUserExists(repoName);
 
-    if (!response.status === 200) {
+      // const response = await api.get(`/repos/${repoName}`);
+      console.tron.log(response.status);
+
+      if (!response.status === 200) {
+        this.setState({ loading: false });
+        Alert.alert('Githuber', 'Repo não encontrado.');
+        return;
+      }
+
+      if (this.state.repositories.find(e => e.id === response.data.id)) {
+        this.setState({ loading: false });
+        Alert.alert('Githuber', 'Repo já adicionado.');
+        return;
+      }
+
+      const {
+        id,
+        name,
+        full_name: fullName,
+        organization: { login: organization },
+        owner: { avatar_url: avatarUrl },
+      } = response.data;
+
+      const newRepo = {
+        id,
+        name,
+        fullName,
+        organization,
+        avatarUrl,
+      };
+
+      // console.tron.log(response.data);
+      // console.tron.log(this.state.repositories.length);
+
+      await AsyncStorage.setItem('@Desafio02Go:repositories', JSON.stringify([...this.state.repositories, newRepo]));
+      this.loadRepositories();
       this.setState({ loading: false });
-      Alert.alert('Githuber', 'Repo não encontrado.');
-      return;
+    } catch (err) {
+      this.setState({ loading: false });
+      Alert.alert('Githuber', 'Repo inválido.');
     }
+  }
 
-    /* if (this.state.repositories.find(e => e.id === response.data.id)) {
-    //  Alert.alert('Githuber', 'Repo já adicionado.');
-    //  this.setState({ loading: false });
-    //  return;
-    //}
-    */
-
-    const {
-      id,
-      name,
-      full_name: fullName,
-      organization: { login: organization },
-      owner: { avatar_url: avatarUrl },
-    } = response.data;
-
-    const newRepo = {
-      id,
-      name,
-      fullName,
-      organization,
-      avatarUrl,
-    };
-
-    //console.tron.log(newRepo.avatarUrl);
-    //console.tron.log(this.state.repositories.length);
-
-    await AsyncStorage.setItem('@Desafio02Go:repositories', JSON.stringify([...this.state.repositories, newRepo]));
-    this.loadRepositories();
-    this.setState({ loading: false });
+  checkUserExists = async (repository) => {
+    const response = await api.get(`repos/${repository}`);
+    return response;
   }
 
   loadRepositories = async () => {
@@ -105,7 +116,7 @@ export default class Repositories extends Component {
 
   renderError = () => (
     <View style={styles.containerEmpty}>
-      <Text style={styles.textEmpty}>{this.state.tst}</Text>
+      <Text style={styles.textEmpty}>{this.state.none}</Text>
     </View>
   )
 
@@ -120,7 +131,7 @@ export default class Repositories extends Component {
       data={this.state.repositories}
       keyExtractor={item => String(item.id)}
       showsVerticalScrollIndicator={false}
-      renderItem={({ item }) => <Card repository={item} navigation={this.props.navigation} />}
+      renderItem={({ item }) => <Repo repository={item} navigation={this.props.navigation} />}
     />
   )
 

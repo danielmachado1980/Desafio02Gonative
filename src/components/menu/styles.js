@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     height: 30,
-    backgroundColor: colors.light,
+    backgroundColor: colors.white,
     borderRadius: 5,
     marginHorizontal: 15,
     marginTop: 10,

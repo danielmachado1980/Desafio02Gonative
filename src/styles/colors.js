@@ -6,10 +6,4 @@ export default {
   dark: '#666666',
   darker: '#333333',
 
-  primary: '#444a5a',
-  secundary: '#7a91ca',
-  background: '#fbfafa',
-  error: '#ff5a5a',
-  orange: '#f96a1d',
-  description: '#a0a0a0',
 };

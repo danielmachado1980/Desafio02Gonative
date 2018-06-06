@@ -13,6 +13,5 @@ export default {
   navBarHeight: 54,
   statusBarHeight: (Platform.OS === 'ios') ? 20 : 0,
   btnAndroid: (Platform.OS === 'android') ? 20 : 0,
-  baseRadius: 10,
-  email: 86,
+  baseRadius: 5,
 };

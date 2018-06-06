@@ -5,8 +5,7 @@ import { colors } from 'styles';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //paddingHorizontal: 15,
-    //paddingTop: 10,
+    backgroundColor: colors.lowLight,
   },
   containerEmpty: {
     flex: 1,
@@ -16,7 +15,6 @@ const styles = StyleSheet.create({
   textEmpty: {
     fontSize: 12,
     color: colors.dark,
-    //fontWeight: 'bold',
   },
 });
 
