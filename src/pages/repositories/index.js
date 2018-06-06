@@ -33,6 +33,7 @@ export default class Repositories extends Component {
   }
 
   componentDidMount() {
+    //AsyncStorage.clear();
     this.loadRepositories();
     this.props.navigation.setParams({ addRepository: this.addRepository });
   }
@@ -51,7 +52,7 @@ export default class Repositories extends Component {
       const response = await this.checkUserExists(repoName);
 
       // const response = await api.get(`/repos/${repoName}`);
-      console.tron.log(response.status);
+      console.tron.log(response.data);
 
       if (!response.status === 200) {
         this.setState({ loading: false });
@@ -69,8 +70,8 @@ export default class Repositories extends Component {
         id,
         name,
         full_name: fullName,
-        organization: { login: organization },
-        owner: { avatar_url: avatarUrl },
+        //organization: { login: organization },
+        owner: { avatar_url: avatarUrl, login: organization },
       } = response.data;
 
       const newRepo = {

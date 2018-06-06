@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, fonts } from 'styles';
+import { metrics, colors } from 'styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -7,15 +7,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     height: 30,
-    backgroundColor: colors.white,
-    borderRadius: 5,
-    marginHorizontal: 15,
-    marginTop: 10,
+    backgroundColor: colors.light,
+    borderRadius: metrics.baseRadius,
+    marginHorizontal: metrics.basePadding,
+    marginTop: metrics.basePadding,
     borderTopWidth: 0,
   },
   tab: {
     color: colors.dark,
-    //fontSize: fonts.small,
   },
   active: {
     fontWeight: 'bold',
